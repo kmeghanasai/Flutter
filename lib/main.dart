@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'info.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -6,8 +7,115 @@ void main() {
   ));
 }
 
-class CatSearch extends StatelessWidget {
+class CatSearch extends StatefulWidget {
   const CatSearch({super.key});
+
+  @override
+  State<CatSearch> createState() => _CatSearchState();
+}
+
+class _CatSearchState extends State<CatSearch> {
+  List<Info> information = [
+    Info(
+        bookName: 'Intro to Algorithms',
+        author: 'Thomas H.cormen',
+        year: 2009,
+        status: 'Available'),
+    Info(
+        bookName: 'Clean Code',
+        author: 'Robert',
+        year: 2008,
+        status: 'Available'),
+    Info(
+        bookName: 'Design Patterns',
+        author: 'Erich',
+        year: 1994,
+        status: 'Not Available'),
+  ];
+
+  Widget infotemplate(info) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: 2.5,
+              blurRadius: 2,
+            ),
+          ]
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  info.bookName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: Colors.grey[800],
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      info.author,
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.library_books_rounded,
+                      color: Colors.grey[800],
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      '${info.year}',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  info.status,
+                  style: TextStyle(
+                    color: info.status == 'Available' ? Colors.green[800] : Colors.red[800],
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            // SizedBox(width: 20),
+            Spacer(),
+            Image(
+              image: NetworkImage('https://mit-press-us.imgix.net/covers/9780262530910.jpg?auto=format&w=298'),
+              height: 100,
+              width: 100,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,209 +163,7 @@ class CatSearch extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 30.0),
-            Container(
-              color: Colors.grey[400],
-              padding: const EdgeInsets.fromLTRB(30, 30, 10, 30),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Intro to Algorithms',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Colors.grey[800],
-                          ),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            'Thomas H.Cormen',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.library_books_rounded,
-                              color: Colors.grey[800]),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            '2009',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Not Available',
-                        style: TextStyle(
-                          color: Colors.green[800],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 40),
-                  Image(
-                    image: NetworkImage('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387741681i/108986.jpg'),
-                    width: 100,
-                    height: 120,
-                    ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              color: Colors.grey[400],
-              padding: const EdgeInsets.fromLTRB(30, 30, 10, 30),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Intro to Algorithms',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Colors.grey[800],
-                          ),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            'Thomas H.Cormen',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.library_books_rounded,
-                              color: Colors.grey[800]),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            '2009',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Not Available',
-                        style: TextStyle(
-                          color: Colors.green[800],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 40),
-                  Image(
-                    image: NetworkImage('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387741681i/108986.jpg'),
-                    width: 100,
-                    height: 120,
-                    ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              color: Colors.grey[400],
-              padding: const EdgeInsets.fromLTRB(30, 30, 10, 30),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Intro to Algorithms',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Colors.grey[800],
-                          ),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            'Thomas H.Cormen',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.library_books_rounded,
-                              color: Colors.grey[800]),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            '2009',
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Not Available',
-                        style: TextStyle(
-                          color: Colors.red[800],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 40),
-                  Image(
-                    image: NetworkImage('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387741681i/108986.jpg'),
-                    width: 100,
-                    height: 120,
-                    ),
-                ],
-              ),
-            ),
+            ...information.map((info) => infotemplate(info)).toList(),
           ],
         ),
       ),
